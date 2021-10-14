@@ -21,18 +21,6 @@
     <PackageReference Include="UnityEngine.Modules" Version="2019.4.27" IncludeAssets="compile" />
     <Reference Include="dep\Assembly-CSharp.dll" Private="false" />
     <Reference Include="$(GameDir)OuterWilds_Data\Managed\Assembly-CSharp-firstpass.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Assembly-UnityScript.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\ConsoleUtilsImport.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\DataPlatformImport.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\GamepadImport.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Mono.Security.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Rewired_Core.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Rewired_Windows.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\StorageImport.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UnityEtx.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UnityFbxPrefab.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UsersImport.dll" Private="false" />
-    <Reference Include="$(GameDir)OuterWilds_Data\Managed\XboxOneCommonImport.dll" Private="false" />
     <Reference Include="$(GameDir)OuterWilds_Data\Managed\Unity.TextMeshPro.dll" Private="false" />
     <Reference Include="$(GameDir)OuterWilds_Data\Managed\Unity.InputSystem.dll" Private="false" />
     <Reference Include="$(GameDir)OuterWilds_Data\Managed\UnityEngine.SpatialTracking.dll" Private="false" />
