@@ -1,0 +1,8 @@
+{
+  "filename": "owmlPlugin.dll",
+  "author": "owmlAuthor",
+  "name": "owmlPlugin",
+  "uniqueName": "owmlAuthor.owmlPlugin",
+  "version": "1.0.0",
+  "owmlVersion": "2.0.0"
+}

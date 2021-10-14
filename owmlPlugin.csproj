@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>owmlPlugin</AssemblyName>
+    <AuthorName>AuthorName</AuthorName>
+    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Outer Wilds\</GameDir>
+    <OWMLDir>$(AppData)OuterWildsModManager\OWML\</OWMLDir>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>9.0</LangVersion>
+    <TargetFramework>net472</TargetFramework>
+
+    <GameDir>$([MSBuild]::EnsureTrailingSlash('$(GameDir)'))</GameDir>
+    <OWMLDir>$([MSBuild]::EnsureTrailingSlash('$(OWMLDir)'))</OWMLDir>
+    <OutDir Condition="Exists('$(OWMLDir)')">$(OWMLDir)Mods\$(AuthorName)-$(AssemblyName)</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OWML" Version="2.*" IncludeAssets="compile" />
+    <PackageReference Include="HarmonyX" Version="2.*" IncludeAssets="compile" />
+    <PackageReference Include="UnityEngine.Modules" Version="2019.4.27" IncludeAssets="compile" />
+    <Reference Include="dep\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Assembly-CSharp-firstpass.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Assembly-UnityScript.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\ConsoleUtilsImport.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\DataPlatformImport.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\GamepadImport.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Mono.Security.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Rewired_Core.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Rewired_Windows.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\StorageImport.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UnityEtx.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UnityFbxPrefab.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UsersImport.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\XboxOneCommonImport.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Unity.TextMeshPro.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\Unity.InputSystem.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UnityEngine.SpatialTracking.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="$(GameDir)OuterWilds_Data\Managed\UnityEngine.XR.LegacyInputHelpers.dll" Private="false" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="default-config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="manifest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

@@ -6,16 +6,16 @@ Use this project as a base for new Outer Wilds mods.
 
 - [Prerequisites](#prerequisites)
 - [How to use this template](#how-to-use-this-template)
-- [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser)
+- [Editing owmlPlugin.csproj](#editing-owmlplugincsproj)
   - [`<GameDir>`](#gamedir)
-  - [`<OwmlDir>`](#owmldir)
-  - [`<ModUniqueName>`](#moduniquename)
+  - [`<OWMLDir>`](#owmldir)
+  - [`<AssemblyName>`](#assemblyname)
+  - [`<AuthorName>`](#authorname)
 - [Editing manifest.json](#editing-manifestjson)
   - [fileName](#filename)
   - [author](#author)
   - [name](#name)
   - [uniqueName](#uniquename)
-  - [description](#description)
   - [version](#version)
   - [owmlVersion](#owmlversion)
 - [Updating OWML](#updating-owml)
@@ -41,56 +41,54 @@ Use this project as a base for new Outer Wilds mods.
 
 1. [Generate your repository from this template](https://github.com/Raicuparta/ow-mod-template/generate);
 2. Clone your new repository to your machine;
-3. Edit `ModTemplate/ModTemplate.csproj.user` (see [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser) for more info);
-4. Edit `ModTemplate/manifest.json` (see [Editing manifest.json](#editing-manifestjson) for more info);
-5. Open `ModTemplate.sln` in Visual Studio (double clicking the `.sln` file should do the trick);
-6. Start writing your mod code in `ModTemplate/ModTemplate.cs` ([Read OWML's docs to learn what you can do](https://github.com/amazingalek/owml/wiki/For-modders)).
+3. Edit `owmlPlugin.csproj` (see [Editing owmlPlugin.csproj](#editing-owmlplugincsproj) for more info);
+4. Edit `manifest.json` (see [Editing manifest.json](#editing-manifestjson) for more info);
+5. Open `owmlPlugin.sln` in Visual Studio (double clicking the `.sln` file should do the trick);
+6. Start writing your mod code in `Plugin.cs` ([Read OWML's docs to learn what you can do](https://github.com/amazingalek/owml/wiki/For-modders)).
 7. [Build the mod](#building-the-mod);
 8. [Release the mod](#releasing-the-mod);
 
-## Editing ModTemplate.csproj.user
+## Editing owmlPlugin.csproj
 
-Use any text editor for editing this file (Notepad or whatever). The file `ModTemplate/ModTemplate.csproj.user` should look like this:
+Use any text editor for editing this file (Notepad or whatever). The file `owmlPlugin.csproj` should have these entries near the top:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectView>ProjectFiles</ProjectView>
-    <GameDir>GAME_DIR</GameDir>
-    <OwmlDir>OWML_DIR</OwmlDir>
-    <ModUniqueName>MOD_UNIQUE_NAME</ModUniqueName>
-  </PropertyGroup>
-</Project>
+    <AssemblyName>owmlPlugin</AssemblyName>
+    <AuthorName>AuthorName</AuthorName>
+    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Outer Wilds\</GameDir>
+    <OWMLDir>$(AppData)OuterWildsModManager\OWML\</OWMLDir>
 ```
 
-You need to replace `GAME_DIR`, `OWML_DIR` and `MOD_UNIQUE_NAME` between the tags. Be careful not to change the tags themselves (the stuff between `< >`, since that will break the file). Remember to restart Visual Studio (or just reload your mod project) if you edit this file, otherwise the changes won't be applied.
+You need to replace `AssemblyName`, `AuthorName`, `GameDir`, and `OWMLDir` between the tags. Be careful not to change the tags themselves (the stuff between `< >`, since that will break the file). Remember to restart Visual Studio (or just reload your mod project) if you edit this file, otherwise the changes won't be applied.
+
+#### `<AssemblyName>`
+
+This is the name of your mod.
+
+#### `<AuthorName>`
+
+Your name goes here.
 
 #### `<GameDir>`
 
 This is the directory that contains the game's executable (`OuterWilds.exe`). Don't include the executable in the path, just the directory;
 
-#### `<OwmlDir>`
+#### `<OWMLDir>`
 
 This is the directory that contains `OWML.Launcher.exe`. You can find this directory using the Mod Manager: press the three dots menu button in OWML's row, and select "Show in explorer". Again, don't include the executable in the path;
 
-#### `<ModUniqueName>`
-
-A unique ID for your mod. Make sure it matches `uniqueName` in this mod's `manifest.json`;
-
 ## Editing manifest.json
 
-Use any text editor for editing this file (Notepad or whatever). The file `ModTemplate/manifest.json` should look like this:
+Use any text editor for editing this file (Notepad or whatever). The file `manifest.json` should look like this:
 
 ```json
 {
-  "filename": "ModTemplate.dll",
-  "author": "AUTHOR",
-  "name": "MOD_NAME",
-  "uniqueName": "MOD_UNIQUE_NAME",
-  "description": "MOD_DESCRIPTION",
-  "version": "0.1.0",
-  "owmlVersion": "0.7.3"
+  "filename": "owmlPlugin.dll",
+  "author": "owmlAuthor",
+  "name": "owmlPlugin",
+  "uniqueName": "owmlAuthor.owmlPlugin",
+  "version": "1.0.0",
+  "owmlVersion": "2.0.0"
 }
 ```
 
@@ -98,7 +96,7 @@ Edit each entry with the correct information for your mod:
 
 #### fileName
 
-Visual Studio will use the project's name for the dll, so this will usually be `[ProjectName].dll`. Since this template's project name is `ModTemplate`, `fileName` will be `ModTemplate.dll`. Remember that if you change your project's name, you'll have to change this entry too.
+Visual Studio will use the assembly name property from the csproj file for the dll, so this will usually be `[AssemblyName].dll`. Since this template's assembly name is `owmlPlugin`, `fileName` will be `owmlPlugin.dll`. Remember that if you change your project's name, you'll have to change this entry too.
 
 #### author
 
@@ -110,11 +108,7 @@ The human-readable name of your mod, which will show in the Mod Manager.
 
 #### uniqueName
 
-The unique ID of your mod. Must match `<ModUniqueName>` in `.csproj.user`. Can be anything really, as long as it isn't already taken by another mod. You can search for your `uniqueName` in the [mod database](https://raw.githubusercontent.com/Raicuparta/ow-mod-db/master/database.json) if you wanna make sure it isn't already in use.
-
-#### description
-
-Short description of what the mod does. Used in [outerwildsmods.com/mods](https://outerwildsmods.com/mods).
+The unique ID of your mod. Must match `<AssemblyName>` in `.csproj`. Can be anything really, as long as it isn't already taken by another mod. You can search for your `uniqueName` in the [mod database](https://raw.githubusercontent.com/Raicuparta/ow-mod-db/master/database.json) if you wanna make sure it isn't already in use.
 
 #### version
 
@@ -130,7 +124,7 @@ It's important to keep OWML up to date in your project. In Visual Studio's Solut
 
 ## Building the mod
 
-Before attempting to build the mod, make sure you've edited [ModTemplate.csproj.user](#editing-modtemplatecsprojuser), and [manifest.json](#editing-manifestjson) with the correct info. After that's done, go to Visual Studio, open the "Build" menu at the top, and select "Build Solution". If all goes well, your mod should immediately show up the the Mod Manager. You can now press "Start Game" in the manager, and the game should start with your mod enabled (as long as your mod has the checkbox set to enabled).
+Before attempting to build the mod, make sure you've edited [owmlPlugin.csproj](#editing-owmlplugincsproj), and [manifest.json](#editing-manifestjson) with the correct info. After that's done, go to Visual Studio, open the "Build" menu at the top, and select "Build Solution". If all goes well, your mod should immediately show up the the Mod Manager. You can now press "Start Game" in the manager, and the game should start with your mod enabled (as long as your mod has the checkbox set to enabled).
 
 ## Releasing the mod
 
@@ -138,7 +132,7 @@ After you've written the code for your mod, you can release it and make it avail
 
 #### Increasing the version
 
-Always increase your mod's version in [manifest.json](#editing-manifestjson) every time you publish a new release. For instance, change it from "0.1.0" to "0.2.0".
+Always increase your mod's version in [manifest.json](#editing-manifestjson) every time you publish a new release. For instance, change it from "0.1.0" to "2.0.0".
 
 #### Pushing the code to GitHub
 
@@ -162,10 +156,8 @@ To make your mod show up in the Mod Manager and in [outerwildsmods.com](https://
 
 ## Troubleshooting
 
-If you open `ModTemplate/ModTemplate.csproj`, you'll find references to `$(GameDir)`, `$(OwmlDir)`, and `$(ModUniqueName)`. The value of these variables is read from `ModTemplate/ModTemplate.csproj.user`.
+If you open `ModTemplate.csproj`, ensure that `<GameDir>` and `<OWMLDir>` are set to the correct paths.
 
-`$(GameDir)` is used to find references to the needed dll files in `$(GameDir)\OuterWilds_Data\Managed\**.dll`. If you are having problems with missing references (yellow exclamation mark warning icon in Visual Studio reference list), you should double-check your `csproj.user` file, or find the references manually (Right click References in Solution Explorer, select "Add References").
+`$(GameDir)` is used to find references to the needed dll files in `$(GameDir)\OuterWilds_Data\Managed\**.dll`. If you are having problems with missing references (yellow exclamation mark warning icon in Visual Studio reference list), you should double-check your `.csproj` file, or find the references manually (Right click References in Solution Explorer, select "Add References").
 
-`$(OwmlDir)` and `$(ModUniqueName)` are used in the post-build events, to copy the built mod files (and static files like `manifest.json` and `default-config.json`) to the mod directory in `"$(OwmlDir)\Mods\$(ModUniqueName)"`. If you are having problems with post-build events, you can edit them manually in Visual Studio (double click Properties in Solution Explorer, select "Build Events").
-
-You'll also find references to `$(TargetPath)`, which is the path to where Visual Studio places your mod dll after building, and `$(ProjectDir)`, the path with your mod's Visual Studio project. These don't need to be defined manually, they always exist.
+`$(OwmlDir)` is used to copy the built mod files (and static files like `manifest.json` and `default-config.json`) to the mod directory in `"$(OwmlDir)\Mods\$(AuthorName)-$(AssemblyName)"`.
