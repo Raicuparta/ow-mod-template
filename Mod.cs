@@ -2,9 +2,9 @@
 
 using System.Reflection;
 
-namespace owmlPlugin
+namespace ModTemplate
 {
-    public class Plugin : ModBehaviour
+    public class Mod : ModBehaviour
     {
         public void Start()
         {

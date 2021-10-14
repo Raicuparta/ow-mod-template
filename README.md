@@ -6,7 +6,7 @@ Use this project as a base for new Outer Wilds mods.
 
 - [Prerequisites](#prerequisites)
 - [How to use this template](#how-to-use-this-template)
-- [Editing owmlPlugin.csproj](#editing-owmlplugincsproj)
+- [Editing ModTemplate.csproj](#editing-modtemplatecsproj)
   - [`<GameDir>`](#gamedir)
   - [`<OWMLDir>`](#owmldir)
   - [`<AssemblyName>`](#assemblyname)
@@ -41,19 +41,19 @@ Use this project as a base for new Outer Wilds mods.
 
 1. [Generate your repository from this template](https://github.com/Raicuparta/ow-mod-template/generate);
 2. Clone your new repository to your machine;
-3. Edit `owmlPlugin.csproj` (see [Editing owmlPlugin.csproj](#editing-owmlplugincsproj) for more info);
+3. Edit `ModTemplate.csproj` (see [Editing ModTemplate.csproj](#editing-modtemplatecsproj) for more info);
 4. Edit `manifest.json` (see [Editing manifest.json](#editing-manifestjson) for more info);
-5. Open `owmlPlugin.sln` in Visual Studio (double clicking the `.sln` file should do the trick);
-6. Start writing your mod code in `Plugin.cs` ([Read OWML's docs to learn what you can do](https://github.com/amazingalek/owml/wiki/For-modders)).
+5. Open `ModTemplate.sln` in Visual Studio (double clicking the `.sln` file should do the trick);
+6. Start writing your mod code in `Mod.cs` ([Read OWML's docs to learn what you can do](https://github.com/amazingalek/owml/wiki/For-modders)).
 7. [Build the mod](#building-the-mod);
 8. [Release the mod](#releasing-the-mod);
 
-## Editing owmlPlugin.csproj
+## Editing ModTemplate.csproj
 
-Use any text editor for editing this file (Notepad or whatever). The file `owmlPlugin.csproj` should have these entries near the top:
+Use any text editor for editing this file (Notepad or whatever). The file `ModTemplate.csproj` should have these entries near the top:
 
 ```xml
-    <AssemblyName>owmlPlugin</AssemblyName>
+    <AssemblyName>Mod</AssemblyName>
     <AuthorName>AuthorName</AuthorName>
     <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Outer Wilds\</GameDir>
     <OWMLDir>$(AppData)OuterWildsModManager\OWML\</OWMLDir>
@@ -83,10 +83,10 @@ Use any text editor for editing this file (Notepad or whatever). The file `manif
 
 ```json
 {
-  "filename": "owmlPlugin.dll",
-  "author": "owmlAuthor",
-  "name": "owmlPlugin",
-  "uniqueName": "owmlAuthor.owmlPlugin",
+  "filename": "Mod.dll",
+  "author": "Author",
+  "name": "Mod",
+  "uniqueName": "Author.Mod",
   "version": "1.0.0",
   "owmlVersion": "2.0.0"
 }
@@ -96,7 +96,7 @@ Edit each entry with the correct information for your mod:
 
 #### fileName
 
-Visual Studio will use the assembly name property from the csproj file for the dll, so this will usually be `[AssemblyName].dll`. Since this template's assembly name is `owmlPlugin`, `fileName` will be `owmlPlugin.dll`. Remember that if you change your project's name, you'll have to change this entry too.
+Visual Studio will use the assembly name property from the csproj file for the dll, so this will usually be `[AssemblyName].dll`. Since this template's assembly name is `ModTemplate`, `fileName` will be `ModTemplate.dll`. Remember that if you change your project's name, you'll have to change this entry too.
 
 #### author
 
@@ -124,7 +124,7 @@ It's important to keep OWML up to date in your project. In Visual Studio's Solut
 
 ## Building the mod
 
-Before attempting to build the mod, make sure you've edited [owmlPlugin.csproj](#editing-owmlplugincsproj), and [manifest.json](#editing-manifestjson) with the correct info. After that's done, go to Visual Studio, open the "Build" menu at the top, and select "Build Solution". If all goes well, your mod should immediately show up the the Mod Manager. You can now press "Start Game" in the manager, and the game should start with your mod enabled (as long as your mod has the checkbox set to enabled).
+Before attempting to build the mod, make sure you've edited [ModTemplate.csproj](#editing-modtemplatecsproj), and [manifest.json](#editing-manifestjson) with the correct info. After that's done, go to Visual Studio, open the "Build" menu at the top, and select "Build Solution". If all goes well, your mod should immediately show up the the Mod Manager. You can now press "Start Game" in the manager, and the game should start with your mod enabled (as long as your mod has the checkbox set to enabled).
 
 ## Releasing the mod
 
