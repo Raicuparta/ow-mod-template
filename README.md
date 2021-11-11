@@ -136,7 +136,7 @@ Always increase your mod's version in [manifest.json](#editing-manifestjson) eve
 
 #### Pushing the code to GitHub
 
-If you forked the ow-mod-template repository as per the initial instructions, you now have your own version of this repository in your GitHub account. Your GitHub username will displayed as the mod's author, and the description for the mod will be fetched from the repository description on Github.
+If you forked the ow-mod-template repository as per the initial instructions, you now have your own version of this repository in your GitHub account. Your GitHub username will displayed as the mod's author, and the description for the mod will be fetched from the repository description on Github. The `README.md` file will be your mod's readme, so update it with instructions on how to use your mod. There's a button in the Mod Manager that will point to your mod's readme once you publish it.
 
 #### Creating a file for the release
 
