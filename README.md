@@ -7,7 +7,6 @@ Use this project as a base for new Outer Wilds mods.
 - [Prerequisites](#prerequisites)
 - [How to use this template](#how-to-use-this-template)
 - [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser)
-  - [`<GameDir>`](#gamedir)
   - [`<OwmlDir>`](#owmldir)
   - [`<ModUniqueName>`](#moduniquename)
 - [Editing manifest.json](#editing-manifestjson)
@@ -56,18 +55,13 @@ Use any text editor for editing this file (Notepad or whatever). The file `ModTe
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
-    <GameDir>GAME_DIR</GameDir>
     <OwmlDir>OWML_DIR</OwmlDir>
     <ModUniqueName>MOD_UNIQUE_NAME</ModUniqueName>
   </PropertyGroup>
 </Project>
 ```
 
-You need to replace `GAME_DIR`, `OWML_DIR` and `MOD_UNIQUE_NAME` between the tags. Be careful not to change the tags themselves (the stuff between `< >`, since that will break the file). Remember to restart Visual Studio (or just reload your mod project) if you edit this file, otherwise the changes won't be applied.
-
-#### `<GameDir>`
-
-This is the directory that contains the game's executable (`OuterWilds.exe`). Don't include the executable in the path, just the directory;
+You need to replace `OWML_DIR` and `MOD_UNIQUE_NAME` between the tags. Be careful not to change the tags themselves (the stuff between `< >`, since that will break the file). Remember to restart Visual Studio (or just reload your mod project) if you edit this file, otherwise the changes won't be applied.
 
 #### `<OwmlDir>`
 
@@ -156,9 +150,9 @@ To make your mod show up in the Mod Manager and in [outerwildsmods.com](https://
 
 ## Troubleshooting
 
-If you open `ModTemplate/ModTemplate.csproj`, you'll find references to `$(GameDir)`, `$(OwmlDir)`, and `$(ModUniqueName)`. The value of these variables is read from `ModTemplate/ModTemplate.csproj.user`.
+A NuGet package called `OuterWildsGameLibs` is used to get references to the game code. If a game update has been released and this nuget hasn't been updated yet, you might need to reference the game libraries manually.
 
-`$(GameDir)` is used to find references to the needed dll files in `$(GameDir)\OuterWilds_Data\Managed\**.dll`. If you are having problems with missing references (yellow exclamation mark warning icon in Visual Studio reference list), you should double-check your `csproj.user` file, or find the references manually (Right click References in Solution Explorer, select "Add References").
+If you open `ModTemplate/ModTemplate.csproj`, you'll find references to `$(OwmlDir)` and `$(ModUniqueName)`. The value of these variables is read from `ModTemplate/ModTemplate.csproj.user`.
 
 `$(OwmlDir)` and `$(ModUniqueName)` are used in the post-build events, to copy the built mod files (and static files like `manifest.json` and `default-config.json`) to the mod directory in `"$(OwmlDir)\Mods\$(ModUniqueName)"`. If you are having problems with post-build events, you can edit them manually in Visual Studio (double click Properties in Solution Explorer, select "Build Events").
 
