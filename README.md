@@ -150,7 +150,7 @@ To make your mod show up in the Mod Manager and in [outerwildsmods.com](https://
 
 ## Troubleshooting
 
-A NuGet package called `OuterWildsGameLibs` is used to get references to the game code. If a game update has been released and this nuget hasn't been updated yet, you might need to reference the game libraries manually.
+A NuGet package called `OuterWildsGameLibs` is used to get references to the game code. If a game update has been released and this nuget hasn't been updated yet, you might need to reference the game libraries manually. [More information on the ow-game-libs repo](https://github.com/Raicuparta/ow-game-libs).
 
 If you open `ModTemplate/ModTemplate.csproj`, you'll find references to `$(OwmlDir)` and `$(ModUniqueName)`. The value of these variables is read from `ModTemplate/ModTemplate.csproj.user`.
 
