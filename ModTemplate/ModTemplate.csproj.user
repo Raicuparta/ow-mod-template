@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
     <GameDir>C:\Program Files\Epic Games\OuterWilds</GameDir>
-    <OwmlDir>C:\Users\rai\Repos\owml\src\OWML.Launcher\bin\Release\owml</OwmlDir>
+    <OwmlDir>C:\Users\rai\AppData\Roaming\OuterWildsModManager\OWML</OwmlDir>
     <ModUniqueName>Raicuparta.ModTemplate</ModUniqueName>
   </PropertyGroup>
 </Project>

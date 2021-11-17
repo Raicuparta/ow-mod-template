@@ -1,9 +1,5 @@
 ﻿using OWML.ModHelper;
 using OWML.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ModTemplate
 {
@@ -20,6 +16,14 @@ namespace ModTemplate
         {
             // Starting here, you'll have access to OWML's mod helper.
             ModHelper.Console.WriteLine($"My mod {nameof(ModTemplate)} is loaded!", MessageType.Success);
+            
+            // Example of accessing game code.
+            LoadManager.OnCompleteSceneLoad += (scene, loadScene) =>
+            {
+                if (loadScene != OWScene.SolarSystem) return;
+                var playerBody = FindObjectOfType<PlayerBody>();
+                ModHelper.Console.WriteLine($"Found player body, and it's called {playerBody.name}!", MessageType.Success);
+            };
         }
     }
 }
