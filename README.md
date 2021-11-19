@@ -146,7 +146,7 @@ In the Mod Manager, find your mod, click the three dots menu button, and select 
 
 #### Adding your mod to the database
 
-To make your mod show up in the Mod Manager and in [outerwildsmods.com](https://outerwildsmods.com), you need to add it to the database. Follow the instructions in the [Outer Wilds Mod Database readme](https://github.com/Raicuparta/ow-mod-db#outer-wilds-mod-database) to learn how to add your mod.
+To make your mod show up in the Mod Manager and in [outerwildsmods.com](https://outerwildsmods.com), you need to add it to the database. [Click here to request for your mod to be added to the database](https://github.com/Raicuparta/ow-mod-db/issues/new?assignees=Raicuparta&labels=add-mod&template=add-mod.yml&title=%5BYour+mod+name+here%5D). Learn more about the Outer Wilds Mod Database in the [ow-mod-db repository](https://github.com/Raicuparta/ow-mod-db).
 
 ## Troubleshooting
 
