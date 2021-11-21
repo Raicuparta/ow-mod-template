@@ -30,7 +30,7 @@ Use this project as a base for new Outer Wilds mods.
 
 ## Prerequisites
 
-- Visual Studio ([download Visual Studio Community here](http://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community));
+- An IDE that supports .NET, like Visual Studio ([download Visual Studio Community here](http://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community));
 - Outer Wilds Mod Manager (get it from the [Outer Wilds Mods](https://outerwildsmods.com/) website);
 - OWML installed in the Mod Manager;
 - A GitHub account (required for forking the repo and for releasing your mod to the public);
@@ -39,37 +39,12 @@ Use this project as a base for new Outer Wilds mods.
 
 1. [Generate your repository from this template](https://github.com/Raicuparta/ow-mod-template/generate);
 2. Clone your new repository to your machine;
-3. Edit `ModTemplate/ModTemplate.csproj.user` (see [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser) for more info);
-4. Edit `ModTemplate/manifest.json` (see [Editing manifest.json](#editing-manifestjson) for more info);
+3. Edit `ModTemplate/manifest.json` (see [Editing manifest.json](#editing-manifestjson) for more info);
+4. Edit `ModTemplate/ModTemplate.csproj.user` (see [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser) for more info);
 5. Open `ModTemplate.sln` in Visual Studio (double clicking the `.sln` file should do the trick);
 6. Start writing your mod code in `ModTemplate/ModTemplate.cs` ([Read OWML's docs to learn what you can do](https://github.com/amazingalek/owml/wiki/For-modders)).
 7. [Build the mod](#building-the-mod);
 8. [Release the mod](#releasing-the-mod);
-
-## Editing ModTemplate.csproj.user
-
-Use any text editor for editing this file (Notepad or whatever). The file `ModTemplate/ModTemplate.csproj.user` should look like this:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectView>ProjectFiles</ProjectView>
-    <OwmlDir>OWML_DIR</OwmlDir>
-    <ModUniqueName>MOD_UNIQUE_NAME</ModUniqueName>
-  </PropertyGroup>
-</Project>
-```
-
-You need to replace `OWML_DIR` and `MOD_UNIQUE_NAME` between the tags. Be careful not to change the tags themselves (the stuff between `< >`, since that will break the file). Remember to restart Visual Studio (or just reload your mod project) if you edit this file, otherwise the changes won't be applied.
-
-#### `<OwmlDir>`
-
-This is the directory that contains `OWML.Launcher.exe`. You can find this directory using the Mod Manager: press the three dots menu button in OWML's row, and select "Show in explorer". Again, don't include the executable in the path;
-
-#### `<ModUniqueName>`
-
-A unique ID for your mod. Make sure it matches `uniqueName` in this mod's `manifest.json`;
 
 ## Editing manifest.json
 
@@ -102,7 +77,7 @@ The human-readable name of your mod, which will show in the Mod Manager.
 
 #### uniqueName
 
-The unique ID of your mod. Must match `<ModUniqueName>` in `.csproj.user`. Can be anything really, as long as it isn't already taken by another mod. You can search for your `uniqueName` in the [mod database](https://raw.githubusercontent.com/Raicuparta/ow-mod-db/master/database.json) if you wanna make sure it isn't already in use.
+The unique ID of your mod. Can be anything really, as long as it isn't already taken by another mod. You can search for your `uniqueName` in the [mod database](https://raw.githubusercontent.com/Raicuparta/ow-mod-db/master/database.json) if you wanna make sure it isn't already in use.
 
 #### version
 
@@ -111,6 +86,29 @@ The version number of the mod. It's important that this version number is consis
 #### owmlVersion
 
 OWML version used for your mod. Only used to show a warning to users using an OWML version different than this. Just make sure that the version here is the one installed in the NuGet packages (see [Updating OWML](#updating-owml) for more info);
+
+
+## Editing ModTemplate.csproj.user
+
+Use any text editor for editing this file (Notepad or whatever). The file `ModTemplate/ModTemplate.csproj.user` should look like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+    <OutputPath>OUTPUT_PATH</OutputPath>
+  </PropertyGroup>
+</Project>
+```
+
+Here you can replace `OUTPUT_PATH` with the path where your mod files will live.
+
+Example: `C:\Users\rai\AppData\Roaming\OuterWildsModManager\OWML\Mods\Raicuparta.ModTemplate`.
+
+To make your mod automatically show up in the Outer Wilds Mod Manager every time you build it, follow the format `{MODS_DIRECTORY}/{MOD_UNIQUE_NAME}`.
+
+To get your `{MODS_DIRECTORY}`, open the Outer Wilds Mod Manager and click the "Mods Directory" button on the top right of the "Mods" tab. The `{MOD_UNIQUE_NAME}` part of the path is just the `uniqueName` that you defined in your mod's `manifest.json`.
 
 ## Updating OWML
 
