@@ -6,9 +6,6 @@ Use this project as a base for new Outer Wilds mods.
 
 - [Prerequisites](#prerequisites)
 - [How to use this template](#how-to-use-this-template)
-- [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser)
-  - [`<OwmlDir>`](#owmldir)
-  - [`<ModUniqueName>`](#moduniquename)
 - [Editing manifest.json](#editing-manifestjson)
   - [fileName](#filename)
   - [author](#author)
@@ -16,6 +13,7 @@ Use this project as a base for new Outer Wilds mods.
   - [uniqueName](#uniquename)
   - [version](#version)
   - [owmlVersion](#owmlversion)
+- [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser)
 - [Updating OWML](#updating-owml)
 - [Building the mod](#building-the-mod)
 - [Releasing the mod](#releasing-the-mod)
