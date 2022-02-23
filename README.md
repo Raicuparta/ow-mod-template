@@ -91,10 +91,8 @@ OWML version used for your mod. Only used to show a warning to users using an OW
 Use any text editor for editing this file (Notepad or whatever). The file `ModTemplate/ModTemplate.csproj.user` should look like this:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
-    <ProjectView>ProjectFiles</ProjectView>
     <OutputPath>OUTPUT_PATH</OutputPath>
   </PropertyGroup>
 </Project>
@@ -102,7 +100,7 @@ Use any text editor for editing this file (Notepad or whatever). The file `ModTe
 
 Here you can replace `OUTPUT_PATH` with the path where your mod files will live.
 
-Example: `C:\Users\rai\AppData\Roaming\OuterWildsModManager\OWML\Mods\Raicuparta.ModTemplate`.
+Example: `$(AppData)\OuterWildsModManager\OWML\Mods\Raicuparta.ModTemplate`.
 
 To make your mod automatically show up in the Outer Wilds Mod Manager every time you build it, follow the format `{MODS_DIRECTORY}/{MOD_UNIQUE_NAME}`.
 
