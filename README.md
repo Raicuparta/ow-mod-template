@@ -106,6 +106,10 @@ To make your mod automatically show up in the Outer Wilds Mod Manager every time
 
 To get your `{MODS_DIRECTORY}`, open the Outer Wilds Mod Manager and click the "Mods Directory" button on the top right of the "Mods" tab. The `{MOD_UNIQUE_NAME}` part of the path is just the `uniqueName` that you defined in your mod's `manifest.json`.
 
+## Editing LICENSE
+
+You can also use any text editor to edit this file.  Change the copyright date and name on line 3 to your own (you can also use your online username instead of your real name).
+
 ## Updating OWML
 
 It's important to keep OWML up to date in your project. In Visual Studio's Solution Explorer, right click "References" and select "Manage NuGet Packages...". In the "Installed" tab, find OWML and press the update button, if it's available (blue circle with a white arrow pointing up). After updating, make note of the new OWML version number. Update your `manifest.json` file with the latest OWML version (see [Editing manifest.json](#editing-manifestjson) for more info).
