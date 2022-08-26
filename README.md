@@ -35,7 +35,7 @@ Use this project as a base for new Outer Wilds mods.
 
 ## How to use this template
 
-1. [Generate your repository from this template](https://github.com/Raicuparta/ow-mod-template/generate);
+1. [Generate your repository from this template](https://github.com/ow-mods/ow-mod-template/generate);
 2. Clone your new repository to your machine;
 3. Edit `ModTemplate/manifest.json` (see [Editing manifest.json](#editing-manifestjson) for more info);
 4. Edit `ModTemplate/ModTemplate.csproj.user` (see [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser) for more info);
@@ -75,7 +75,7 @@ The human-readable name of your mod, which will show in the Mod Manager.
 
 #### uniqueName
 
-The unique ID of your mod. Can be anything really, as long as it isn't already taken by another mod. You can search for your `uniqueName` in the [mod database](https://raw.githubusercontent.com/Raicuparta/ow-mod-db/master/database.json) if you wanna make sure it isn't already in use.
+The unique ID of your mod. Can be anything really, as long as it isn't already taken by another mod. You can search for your `uniqueName` in the [mod database](https://raw.githubusercontent.com/ow-mods/ow-mod-db/master/database.json) if you wanna make sure it isn't already in use.
 
 #### version
 
@@ -84,7 +84,6 @@ The version number of the mod. It's important that this version number is consis
 #### owmlVersion
 
 OWML version used for your mod. Only used to show a warning to users using an OWML version different than this. Just make sure that the version here is the one installed in the NuGet packages (see [Updating OWML](#updating-owml) for more info);
-
 
 ## Editing ModTemplate.csproj.user
 
@@ -108,7 +107,7 @@ To get your `{MODS_DIRECTORY}`, open the Outer Wilds Mod Manager and click the "
 
 ## Editing LICENSE
 
-You can also use any text editor to edit this file.  Change the copyright date and name on line 3 to your own (you can also use your online username instead of your real name).
+You can also use any text editor to edit this file. Change the copyright date and name on line 3 to your own (you can also use your online username instead of your real name).
 
 ## Updating OWML
 
@@ -144,11 +143,11 @@ In the Mod Manager, find your mod, click the three dots menu button, and select 
 
 #### Adding your mod to the database
 
-To make your mod show up in the Mod Manager and in [outerwildsmods.com](https://outerwildsmods.com), you need to add it to the database. [Click here to request for your mod to be added to the database](https://github.com/Raicuparta/ow-mod-db/issues/new?assignees=Raicuparta&labels=add-mod&template=add-mod.yml&title=%5BYour+mod+name+here%5D). Learn more about the Outer Wilds Mod Database in the [ow-mod-db repository](https://github.com/Raicuparta/ow-mod-db).
+To make your mod show up in the Mod Manager and in [outerwildsmods.com](https://outerwildsmods.com), you need to add it to the database. [Click here to request for your mod to be added to the database](https://github.com/ow-mods/ow-mod-db/issues/new?labels=add-mod&template=add-mod.yml&title=%5BYour+mod+name+here%5D). Learn more about the Outer Wilds Mod Database in the [ow-mod-db repository](https://github.com/ow-mods/ow-mod-db).
 
 ## Troubleshooting
 
-A NuGet package called `OuterWildsGameLibs` is used to get references to the game code. If a game update has been released and this nuget hasn't been updated yet, you might need to reference the game libraries manually. [More information on the ow-game-libs repo](https://github.com/Raicuparta/ow-game-libs).
+A NuGet package called `OuterWildsGameLibs` is used to get references to the game code. If a game update has been released and this nuget hasn't been updated yet, you might need to reference the game libraries manually. [More information on the ow-game-libs repo](https://github.com/ow-mods/ow-game-libs).
 
 If you open `ModTemplate/ModTemplate.csproj`, you'll find references to `$(OwmlDir)` and `$(ModUniqueName)`. The value of these variables is read from `ModTemplate/ModTemplate.csproj.user`.
 
