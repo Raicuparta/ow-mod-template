@@ -43,11 +43,12 @@ public class ListObjects : MonoBehaviour
         _pictureCamera.nearClipPlane = 0;
         _pictureCamera.targetTexture = _renderTexture;
         _pictureCamera.clearFlags = CameraClearFlags.Color;
-        _pictureCamera.backgroundColor = Color.clear;
+        _pictureCamera.backgroundColor = Color.white;
         _pictureCamera.cullingMask = 1 << _renderLayer;
 
         var cameraLight = _pictureCamera.gameObject.AddComponent<Light>();
-        cameraLight.type = LightType.Directional;
+        cameraLight.type = LightType.Point;
+        cameraLight.range = 1000;
 
         _pictureFolderPath = Application.dataPath + "/ObjectPics";
         ModTemplate.Instance.ModHelper.Console.WriteLine($"### will put pictures in {_pictureFolderPath}");
