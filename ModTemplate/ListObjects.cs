@@ -10,6 +10,10 @@ namespace ModTemplate;
 public class ListObjects : MonoBehaviour
 {
     private const float Margin = 0.5f;
+    
+    // Minimum image size. To filter out empty images. Not a very smart way to do this.
+    private const float MinImageBytes = 1670;
+    
     private readonly HashSet<long> _usedIds = new();
     private readonly int _renderLayer = 3;
     private readonly ObjectsJson _objectsJson = new();
@@ -120,8 +124,15 @@ public class ListObjects : MonoBehaviour
             var image = new Texture2D(_renderTexture.width, _renderTexture.height);
             image.ReadPixels(new Rect(0, 0, _renderTexture.width, _renderTexture.height), 0, 0);
             image.Apply();
-     
+
             var bytes = image.EncodeToPNG();
+
+            if (bytes.Length <= MinImageBytes)
+            {
+                ModTemplate.Instance.ModHelper.Console.WriteLine($"image for {path} too small, skipping");
+                return;
+            }
+            
             Destroy(image);
 
             var fileName = $"{_fileIndex.ToString()}.png";
