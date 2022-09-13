@@ -5,11 +5,11 @@ namespace ModTemplate
 {
     public class ModTemplate : ModBehaviour
     {
+        public static ModTemplate Instance;
+        
         private void Awake()
         {
-            // You won't be able to access OWML's mod helper in Awake.
-            // So you probably don't want to do anything here.
-            // Use Start() instead.
+            Instance = this;
         }
 
         private void Start()

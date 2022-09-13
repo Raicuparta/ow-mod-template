@@ -19,6 +19,13 @@ public class ListObjects : MonoBehaviour
     private int _fileIndex;
 
     [JsonObject(MemberSerialization.OptOut)]
+    private class ObjectInfo
+    {
+        public string Path;
+        public string MeshName;
+    }
+    
+    [JsonObject(MemberSerialization.OptOut)]
     private class ObjectsJson
     {
         public Dictionary<string, string> Objects = new();
@@ -43,7 +50,7 @@ public class ListObjects : MonoBehaviour
         cameraLight.type = LightType.Directional;
 
         _pictureFolderPath = Application.dataPath + "/ObjectPics";
-        Debug.Log($"### will put pictures in {_pictureFolderPath}");
+        ModTemplate.Instance.ModHelper.Console.WriteLine($"### will put pictures in {_pictureFolderPath}");
         Directory.CreateDirectory(_pictureFolderPath);
 
         StartCoroutine(StartTakingPics());
@@ -70,13 +77,11 @@ public class ListObjects : MonoBehaviour
 
     private void TakePics(Transform parent, string path)
     {
-        var meshRenderers = parent.GetComponentsInChildren<MeshRenderer>(true);
-        var skinnedRenderers = parent.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+        var meshFilters = parent.GetComponentsInChildren<MeshFilter>(true);
 
-        if (meshRenderers.Length + meshRenderers.Length == 0) return;
+        if (meshFilters.Length == 0) return;
 
-        TakePic(meshRenderers, path);
-        TakePic(skinnedRenderers, path);
+        TakePic(meshFilters, path);
         
         foreach (Transform child in parent)
         {
@@ -85,16 +90,24 @@ public class ListObjects : MonoBehaviour
         }
     }
 
-    private void TakePic(IReadOnlyList<Renderer> renderers, string path)
+    private void TakePic(IReadOnlyList<MeshFilter> meshFilters, string path)
     {
-        if (renderers.Count == 0) return;
+        if (meshFilters.Count == 0) return;
         
-        var id = ChangeLayerAndGetId(renderers);
-        if (!_usedIds.Contains(id))
+        var id = ChangeLayerAndGetId(meshFilters);
+        if (id != 0 && !_usedIds.Contains(id))
         {
             _usedIds.Add(id);
 
-            var bounds = GetRendererListBounds(renderers);
+            var boundResult = GetRendererListBounds(meshFilters);
+
+            if (!boundResult.HasValue)
+            {
+                ModTemplate.Instance.ModHelper.Console.WriteLine($"Skipping {path}: no bounds");
+                return;
+            }
+
+            var bounds = boundResult.Value;
 
             _pictureCamera.transform.position = new Vector3(bounds.center.x, bounds.center.y, bounds.min.z) - Vector3.forward * Margin;
             _pictureCamera.orthographicSize = Mathf.Max(bounds.size.x, bounds.size.y) / 2f + Margin;
@@ -115,43 +128,52 @@ public class ListObjects : MonoBehaviour
             File.WriteAllBytes(Path.Combine(_pictureFolderPath, fileName), bytes);
             _objectsJson.Objects[fileName] = path;
             
-            Debug.Log(path);
+            ModTemplate.Instance.ModHelper.Console.WriteLine(path);
         }
         else
         {
-            Debug.Log($"already included {path}, skipping");
+            ModTemplate.Instance.ModHelper.Console.WriteLine($"already included {path}, skipping");
         }
         
-        HideLayers(renderers);
+        HideLayers(meshFilters);
     }
 
-    private static void HideLayers(IEnumerable<Renderer> renderers)
+    private static void HideLayers(IEnumerable<MeshFilter> meshFilters)
     {
-        foreach (var r in renderers)
+        foreach (var meshFilter in meshFilters)
         {
-            Debug.Log($"hiding layer of {r.gameObject.name}");
-            r.gameObject.layer = 0;
+            meshFilter.gameObject.layer = 0;
         }
     }
 
-    private long ChangeLayerAndGetId(IEnumerable<Renderer> renderers)
+    private long ChangeLayerAndGetId(IEnumerable<MeshFilter> meshFilters)
     {
-        return renderers.Aggregate<Renderer, long>(0, (current, r) =>
+        return meshFilters.Aggregate<MeshFilter, long>(0, (current, meshFilter) =>
         {
-            Debug.Log($"setting layer of {r.gameObject.name}");
-            r.enabled = true;
-            EnableAllParents(r.gameObject);
-            r.gameObject.layer = _renderLayer;
-            return current + r.GetInstanceID();
+            var renderer = meshFilter.GetComponent<Renderer>();
+                
+            if (!renderer || !meshFilter.sharedMesh) return 0;
+            
+            renderer.enabled = true;
+            EnableAllParents(meshFilter.gameObject);
+            meshFilter.gameObject.layer = _renderLayer;
+
+            return current + meshFilter.sharedMesh.GetInstanceID();
         });
     }
 
-    private static Bounds GetRendererListBounds(IReadOnlyList<Renderer> renderers)
+    private static Bounds? GetRendererListBounds(IReadOnlyList<MeshFilter> meshFilters)
     {
-        var bounds = new Bounds(renderers[0].bounds.center, renderers[0].bounds.size);
-        foreach (var r in renderers)
+        var firstRenderer = meshFilters.FirstOrDefault(meshFilter => meshFilter.GetComponent<Renderer>() != null)?.GetComponent<Renderer>();
+
+        if (!firstRenderer) return null;
+        
+        var bounds = new Bounds(firstRenderer.bounds.center, firstRenderer.bounds.size);
+        foreach (var meshFilter in meshFilters)
         {
-            bounds.Encapsulate(r.bounds);
+            var renderer = meshFilter.GetComponent<Renderer>();
+            if (!renderer) continue;
+            bounds.Encapsulate(renderer.bounds);
         }
 
         return bounds;
