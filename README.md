@@ -75,7 +75,7 @@ The human-readable name of your mod, which will show in the Mod Manager.
 
 #### uniqueName
 
-The unique ID of your mod. Can be anything really, as long as it isn't already taken by another mod. You can search for your `uniqueName` in the [mod database](https://raw.githubusercontent.com/ow-mods/ow-mod-db/master/database.json) if you wanna make sure it isn't already in use.
+The unique ID of your mod. It's recommened to write it in the form `YourName.ModName`, i.e., Raicuparta.ModTemplate for the ModTemplate mod created by Raicuparta. Can be anything really, as long as it isn't already taken by another mod, so it is best to use namespacing to reduce the liklihood that anyone else has used the same name. You can search for your `uniqueName` in the [mod database](https://raw.githubusercontent.com/ow-mods/ow-mod-db/master/database.json) if you wanna make sure it isn't already in use.
 
 #### version
 
