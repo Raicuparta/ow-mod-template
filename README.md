@@ -40,7 +40,7 @@ Use this project as a base for new Outer Wilds mods.
 3. Edit `ModTemplate/manifest.json` (see [Editing manifest.json](#editing-manifestjson) for more info);
 4. Edit `ModTemplate/ModTemplate.csproj.user` (see [Editing ModTemplate.csproj.user](#editing-modtemplatecsprojuser) for more info);
 5. Open `ModTemplate.sln` in Visual Studio (double clicking the `.sln` file should do the trick);
-6. Start writing your mod code in `ModTemplate/ModTemplate.cs` ([Read OWML's docs to learn what you can do](https://github.com/amazingalek/owml/wiki/For-modders)).
+6. Start writing your mod code in `ModTemplate/ModTemplate.cs` ([Read OWML's docs to learn what you can do](https://owml.outerwildsmods.com)).
 7. [Build the mod](#building-the-mod);
 8. [Release the mod](#releasing-the-mod);
 
