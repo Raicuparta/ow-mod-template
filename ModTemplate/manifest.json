@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/amazingalek/owml/master/schemas/manifest_schema.json",
+  "$schema": "https://raw.githubusercontent.com/ow-mods/owml/master/schemas/manifest_schema.json",
   "filename": "ModTemplate.dll",
   "author": "Raicuparta",
   "name": "Mod Template",
