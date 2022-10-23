@@ -1,4 +1,4 @@
-# DEPRECATION NOTICE
+# :warning: DEPRECATION NOTICE :warning:
 
 This template has been deprecated, we recommend you check out the [getting started page](https://owml.outerwildsmods.com/guides/getting_started.html) of the OWML docs as that guides you through how to use the new template.
 
